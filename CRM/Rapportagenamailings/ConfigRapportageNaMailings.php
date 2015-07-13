@@ -25,7 +25,7 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
 
   // txt file
   protected $txtDir = '';
-  protected $txtFilePath = 'nl.vnv.rapportagenamailings/api/v3/Job/RapportageNaMailings.txt';
+  protected $txtFilePath = 'RapportageNaMailings.txt';
   protected $txtFilePathFull = '';
   protected $txtFileExists = false;
   protected $txtData = array();
@@ -42,7 +42,7 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
     $this->setMailings();
     
     // txt
-    $this->setTxtExtDir();
+    $this->setTxtDir();
     $this->setTxtFilePathFull();
     $this->setTxtFileExists();
     $this->setTxtData();
