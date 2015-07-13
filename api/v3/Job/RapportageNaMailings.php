@@ -29,6 +29,8 @@ function civicrm_api3_job_rapportagenamailings($params) {
   if('RapportageNaMailings' == CRM_Utils_Request::retrieve('job', 'String')){    
     $configRapportageNaMailings = CRM_Rapportagenamailings_ConfigRapportageNaMailings::singleton();   
         
+    echo('TxtPathFull: ' . $configRapportageNaMailings->getTxtFilePathFull());
+    
     // check if file exists
     // If the file does not exists it is probably the first time, so
     // we have to create the file and set all the mailing id on done 
