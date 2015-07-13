@@ -11,6 +11,9 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
    */
   static private $_singleton = NULL;
   
+  // Setting
+  protected $settings = array();
+
   // Mailings
   protected $mailings = array();
   protected $mailingStatus = array(
@@ -21,7 +24,9 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
   );
 
   // txt file
-  protected $txtFilePath = 'RapportageNaMailings.txt';
+  protected $txtExtDir = '';
+  protected $txtFilePath = 'nl.vnv.rapportagenamailings/api/v3/Job/RapportageNaMailings.txt';
+  protected $txtFilePathFull = '';
   protected $txtFileExists = false;
   protected $txtData = array();
 
@@ -30,10 +35,15 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
    * Constructor
    */
   function __construct() {
+    // Settings
+    $this->setSettings();
+    
     // Mailings
     $this->setMailings();
     
     // txt
+    $this->setTxtExtDir();
+    $this->setTxtFilePathFull();
     $this->setTxtFileExists();
     $this->setTxtData();
   }
@@ -52,6 +62,29 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
     return self::$_singleton;
   }
   
+  // Settings
+  protected function setSettings(){
+    try {
+      $params = array(
+        'version' => 3,
+        'sequential' => 1,
+      );
+      $this->settings = civicrm_api('Setting', 'getsingle', $params);
+      
+    } catch (CiviCRM_API3_Exception $ex) {
+      throw new Exception('Could not find setting, '
+        . 'error from Setting getsingle: '.$ex->getMessage());
+    }
+  }
+  
+  public function getSettings(){
+    return $this->settings;
+  }
+  
+  public function getSetting($name){
+    return $this->settings[$name];
+  }
+
   // Mailings
   /*protected function setMailings(){  
     // Initialise our pagesize and offset
@@ -145,15 +178,32 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
     return $this->mailings;
   }
   
-  // txt
-  // 
+  // txt extension dir
+  protected function setTxtExtDir(){
+    $this->txtExtDir = $this->settings['extensionsDir'];
+  }
+  
+  public function getTxtExtDir(){
+    return $this->txtExtDir;
+  }
+
+  // txt file path full
+  protected function setTxtFilePathFull(){
+    $this->txtFilePathFull = $this->txtExtDir . $this->txtFilePath;
+  }
+
+  public function getTxtFilePathFull(){
+    return $this->txtFilePathFull;
+  }
+
+  // get txt file path
   public function getTxtFilePath(){
     return $this->txtFilePath;
-  }
+  } 
 
   // set txt file exists
   protected function setTxtFileExists(){
-    if(file_exists($this->txtFilePath)){
+    if(file_exists($this->txtFilePathFull)){
       $this->txtFileExists = true;
     }else {
       $this->txtFileExists = false;
@@ -167,8 +217,12 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
   // set txt data
   protected function setTxtData(){
     if($this->txtFileExists){
-      $file = fopen($this->txtFilePath, "r");
-      $data = fread($file, filesize($this->txtFilePath));
+      $file = fopen($this->txtFilePathFull, "r");
+      if(!$file){
+        echo('Extension nl.vnv.rapportagenamailings. Could not open ' . $this->txtFilePathFull);
+        return false;
+      }
+      $data = fread($file, filesize($this->txtFilePathFull));
       fclose($file);
     }
     $this->txtData = json_decode($data, true);
@@ -180,7 +234,11 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
   
   // write txt data
   public function writeTxtData($data){
-    $file = fopen($this->txtFilePath, "w");
+    $file = fopen($this->txtFilePathFull, "w");
+    if(!$file){
+      echo('Extension nl.vnv.rapportagenamailings. Could not open ' . $this->txtFilePathFull);
+      return false;
+    }
     fwrite($file, json_encode($data));
     fclose($file);
   }

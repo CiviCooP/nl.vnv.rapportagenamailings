@@ -40,7 +40,7 @@ class CRM_Rapportagenamailings_Page_RapportMailing extends CRM_Core_Page {
   }
 
   function run() {
-    $this->_mailing_id = CRM_Utils_Request::retrieve('mid', 'Positive', $this);
+    /*$this->_mailing_id = CRM_Utils_Request::retrieve('mid', 'Positive', $this);
 
     // check that the user has permission to access mailing id
     CRM_Mailing_BAO_Mailing::checkPermission($this->_mailing_id);
@@ -48,7 +48,7 @@ class CRM_Rapportagenamailings_Page_RapportMailing extends CRM_Core_Page {
     $report = CRM_Mailing_BAO_Mailing::report($this->_mailing_id);
 
     //get contents of mailing
-    CRM_Mailing_BAO_Mailing::getMailingContent($report, $this);
+    CRM_Mailing_BAO_Mailing::getMailingContent($report, $this);*/
 
     //assign backurl
     /*$context = CRM_Utils_Request::retrieve('context', 'String', $this);
@@ -78,11 +78,11 @@ class CRM_Rapportagenamailings_Page_RapportMailing extends CRM_Core_Page {
     $this->assign('backUrl', $backUrl);
     $this->assign('backUrlTitle', $backUrlTitle);*/
 
-    $this->assign('report', $report);
+    /*$this->assign('report', $report);
     CRM_Utils_System::setTitle(ts('CiviMail Report: %1',
         array(1 => $report['mailing']['name'])
       ));
 
-    return CRM_Core_Page::run();
+    return CRM_Core_Page::run();*/
   }
 }

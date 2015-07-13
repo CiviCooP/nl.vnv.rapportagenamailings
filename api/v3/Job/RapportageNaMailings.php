@@ -28,7 +28,7 @@ function civicrm_api3_job_rapportagenamailings($params) {
   // run always even if the job is disabled in the scheduled jobs  
   if('RapportageNaMailings' == CRM_Utils_Request::retrieve('job', 'String')){    
     $configRapportageNaMailings = CRM_Rapportagenamailings_ConfigRapportageNaMailings::singleton();   
-    
+        
     // check if file exists
     // If the file does not exists it is probably the first time, so
     // we have to create the file and set all the mailing id on done 
@@ -102,7 +102,7 @@ function civicrm_api3_job_rapportagenamailings_mail($mailing_id){
   $params = array(
     'from' => 'j.vos@bosqom.nl', // complete from envelope
     'toName' => 'Jan-Derek Vos', // name of person to send email
-    'toEmail' => 'h.vos234@chello.nl', // email address to send to
+    'toEmail' => 'j.vos@bosqom.nl', // email address to send to
     'subject' => 'Rapportage na Mailings', // subject of the email
     'text' => 'Rapportage na Mailings', // text of the message
     'html' => $content, // html version of the message
