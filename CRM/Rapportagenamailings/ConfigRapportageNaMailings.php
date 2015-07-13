@@ -24,7 +24,7 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
   );
 
   // txt file
-  protected $txtExtDir = '';
+  protected $txtDir = '';
   protected $txtFilePath = 'nl.vnv.rapportagenamailings/api/v3/Job/RapportageNaMailings.txt';
   protected $txtFilePathFull = '';
   protected $txtFileExists = false;
@@ -179,17 +179,17 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
   }
   
   // txt extension dir
-  protected function setTxtExtDir(){
-    $this->txtExtDir = $this->settings['extensionsDir'];
+  protected function setTxtDir(){
+    $this->txtDir = $this->settings['customFileUploadDir'];
   }
   
-  public function getTxtExtDir(){
-    return $this->txtExtDir;
+  public function getTxtDir(){
+    return $this->txtDir;
   }
 
   // txt file path full
   protected function setTxtFilePathFull(){
-    $this->txtFilePathFull = $this->txtExtDir . $this->txtFilePath;
+    $this->txtFilePathFull = $this->txtDir . $this->txtFilePath;
   }
 
   public function getTxtFilePathFull(){
