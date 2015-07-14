@@ -23,9 +23,9 @@
  | see the CiviCRM license FAQ at http://civicrm.org/licensing        |
  +--------------------------------------------------------------------+
 *}
-<h1>{$subject}</h1>
+<h2>{$subject}</h2>
 <fieldset>
-  <legend><b>{ts}Delivery Summary{/ts}</b></legend>
+  <legend><h3>{ts}Delivery Summary{/ts}</h3></legend>
 {if $report.jobs.0.start_date}
   {strip}
   <table class="crm-info-panel">
@@ -77,8 +77,9 @@
 {/if}
 </fieldset>
 
+</br>
 <fieldset>
-<legend><b>{ts}Recipients{/ts}</b></legend>
+<legend><h3>{ts}Recipients{/ts}</h3></legend>
 {if $report.group.include|@count}
 <span class="label">{ts}Included{/ts}</span>
 {strip}
@@ -138,8 +139,9 @@
 </fieldset>
 
 {if $report.mailing.url_tracking && $report.click_through|@count > 0}
+</br>
 <fieldset>
-<legend><b>{ts}Click-through Summary{/ts}</b></legend>
+<legend><h3>{ts}Click-through Summary{/ts}</h3></legend>
 {strip}
 <table class="crm-info-panel">
 <tr>
@@ -203,9 +205,10 @@
 {/strip}
 </fieldset>
 -->*}
+</br>
 <fieldset>
 <legend>
-    <b>{ts}Mailing Settings{/ts}</b>
+    <h3>{ts}Mailing Settings{/ts}</h3>
 </legend>
 {strip}
 <table class="crm-info-panel">
