@@ -84,47 +84,6 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
   public function getSetting($name){
     return $this->settings[$name];
   }
-
-  // Mailings
-  /*protected function setMailings(){  
-    // Initialise our pagesize and offset
-    $page_size = 100;
-    $offset = 0;
-    
-    try{
-
-      // Start out loop
-      do {
-        $params = array(
-          'version' => 3,
-          'sequential' => 1,
-          'is_completed' => 1,
-          'is_archived' => 0,
-          //'filter.scheduled_date' => date('Y-m-d') . ' 00:00:00',
-          'options' => array(
-            'limit'  => $page_size,
-            'offset' => $offset
-          )
-        );
-        $result = civicrm_api('Mailing', 'get', $params);
-
-        // do something with the results if we didn't error
-        if ($result['is_error'] == 0) {
-          foreach ($result['values'] as $value) {
-            $this->mailings[$value['id']] = $value;
-          }
-        }
-
-        // Increment the offset by the page size
-        $offset = $offset + $page_size;
-
-      } while ($result['count'] >= $page_size); // Check if we still need to fetch results
-      
-    } catch (CiviCRM_API3_Exception $ex) {
-      throw new Exception('Could not find contact, '
-        . 'error from CRM_Core_DAO: '.$ex->getMessage());
-    }
-  }*/
   
   protected function setMailings(){
     /*$query = "SELECT civicrm_mailing.id, civicrm_mailing_job.status
@@ -136,20 +95,9 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
       AND civicrm_mailing.sms_provider_id IS NULL 
       AND (civicrm_mailing_job.status IN ('Complete', 'Canceled')) 
       AND (civicrm_mailing.is_archived IS NULL OR civicrm_mailing.is_archived = 0)";
-    
-    echo('$query: ' . $query);
-    
-    $dao = CRM_Core_DAO::executeQuery($query);
-    while($dao->fetch){
-      echo('<pre>');
-      print_r($dao);
-      echo('</pre>');
     }*/
     
     try {
-      //$query = 'SELECT * FROM civicrm_contact WHERE id= %1';
-      //$params = array(1 => array($this->contact_id, 'Positive'));
-      //$dao = CRM_Core_DAO::executeQuery($query, $params);
             
       $query = "SELECT civicrm_mailing.id, civicrm_mailing_job.status
         FROM  civicrm_mailing 

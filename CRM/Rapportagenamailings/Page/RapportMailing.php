@@ -3,14 +3,14 @@
 require_once 'CRM/Core/Page.php';
 
 class CRM_Rapportagenamailings_Page_RapportMailing extends CRM_Core_Page {
-  public $_mailing_id;
+  //public $_mailing_id;
 
   /**
    * Get BAO Name
    *
    * @return string Classname of BAO
    */
-  function getBAOName() {
+  /*function getBAOName() {
     return 'CRM_Mailing_BAO_Mailing';
   }
 
@@ -24,20 +24,20 @@ class CRM_Rapportagenamailings_Page_RapportMailing extends CRM_Core_Page {
 
   function editName() {
     return 'CiviMail Report';
-  }
+  }*/
 
   /**
    * Get user context.
    *
    * @return string user context.
    */
-  function userContext($mode = NULL) {
+  /*function userContext($mode = NULL) {
     return 'civicrm/mailing/report';
   }
 
   function userContextParams($mode = NULL) {
     return 'reset=1&mid=' . $this->_mailing_id;
-  }
+  }*/
 
   function run() {
     /*$this->_mailing_id = CRM_Utils_Request::retrieve('mid', 'Positive', $this);

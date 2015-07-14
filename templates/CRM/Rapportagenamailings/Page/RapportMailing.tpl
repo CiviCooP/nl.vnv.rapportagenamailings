@@ -28,45 +28,45 @@
 {if $report.jobs.0.start_date}
   {strip}
   <table class="crm-info-panel">
-    <tr><td class="label"><a href="{$report.event_totals.links.queue}">{ts}Intended Recipients{/ts}</a></td>
+    <tr><td class="label"><a href="{$base_root}{$report.event_totals.links.queue}">{ts}Intended Recipients{/ts}</a></td>
         <td>{$report.event_totals.queue}</td>
-        <td>{$report.event_totals.actionlinks.queue}</td></tr>
-    <tr><td class="label"><a href="{$report.event_totals.links.delivered}">{ts}Successful Deliveries{/ts}</a></td>
+        {*<!--<td>{$report.event_totals.actionlinks.queue}</td>-->*}</tr>
+    <tr><td class="label"><a href="{$base_root}{$report.event_totals.links.delivered}">{ts}Successful Deliveries{/ts}</a></td>
         <td>{$report.event_totals.delivered} ({$report.event_totals.delivered_rate|string_format:"%0.2f"}%)</td>
-        <td>{$report.event_totals.actionlinks.delivered}</td></tr>
+        {*<!--<td>{$report.event_totals.actionlinks.delivered}</td>-->*}</tr>
   {if $report.mailing.open_tracking}
-    <tr><td class="label"><a href="{$report.event_totals.links.opened}">{ts}Tracked Opens{/ts}</a></td>
+    <tr><td class="label"><a href="{$base_root}{$report.event_totals.links.opened}">{ts}Tracked Opens{/ts}</a></td>
         <td>{$report.event_totals.opened}</td>
-        <td>{$report.event_totals.actionlinks.opened}</td></tr>
+        {*<!--<td>{$report.event_totals.actionlinks.opened}</td>-->*}</tr>
   {/if}
   {if $report.mailing.url_tracking}
-    <tr><td class="label"><a href="{$report.event_totals.links.clicks}">{ts}Click-throughs{/ts}</a></td>
+    <tr><td class="label"><a href="{$base_root}{$report.event_totals.links.clicks}">{ts}Click-throughs{/ts}</a></td>
         <td>{$report.event_totals.url}</td>
-        <td>{$report.event_totals.actionlinks.clicks}</td></tr>
+        {*<!--<td>{$report.event_totals.actionlinks.clicks}</td>-->*}</tr>
   {/if}
-  <tr><td class="label"><a href="{$report.event_totals.links.forward}">{ts}Forwards{/ts}</a></td>
+  <tr><td class="label"><a href="{$base_root}{$report.event_totals.links.forward}">{ts}Forwards{/ts}</a></td>
       <td>{$report.event_totals.forward}</td>
-      <td>{$report.event_totals.actionlinks.forward}</td></tr>
-  <tr><td class="label"><a href="{$report.event_totals.links.reply}">{ts}Replies{/ts}</a></td>
+      {*<!--<td>{$report.event_totals.actionlinks.forward}</td>-->*}</tr>
+  <tr><td class="label"><a href="{$base_root}{$report.event_totals.links.reply}">{ts}Replies{/ts}</a></td>
       <td>{$report.event_totals.reply}</td>
-      <td>{$report.event_totals.actionlinks.reply}</td></tr>
-  <tr><td class="label"><a href="{$report.event_totals.links.bounce}">{ts}Bounces{/ts}</a></td>
+      {*<!--<td>{$report.event_totals.actionlinks.reply}</td>-->*}</tr>
+  <tr><td class="label"><a href="{$base_root}{$report.event_totals.links.bounce}">{ts}Bounces{/ts}</a></td>
       <td>{$report.event_totals.bounce} ({$report.event_totals.bounce_rate|string_format:"%0.2f"}%)</td>
-      <td>{$report.event_totals.actionlinks.bounce}</td></tr>
-  <tr><td class="label"><a href="{$report.event_totals.links.unsubscribe}">{ts}Unsubscribe Requests{/ts}</a></td>
+      {*<!--<td>{$report.event_totals.actionlinks.bounce}</td>-->*}</tr>
+  <tr><td class="label"><a href="{$base_root}{$report.event_totals.links.unsubscribe}">{ts}Unsubscribe Requests{/ts}</a></td>
       <td>{$report.event_totals.unsubscribe} ({$report.event_totals.unsubscribe_rate|string_format:"%0.2f"}%)</td>
-      <td>{$report.event_totals.actionlinks.unsubscribe}</td></tr>
-  <tr><td class="label"><a href="{$report.event_totals.links.optout}">{ts}Opt-out Requests{/ts}</a></td>
+      {*<!--<td>{$report.event_totals.actionlinks.unsubscribe}</td>-->*}</tr>
+  <tr><td class="label"><a href="{$base_root}{$report.event_totals.links.optout}">{ts}Opt-out Requests{/ts}</a></td>
       <td>{$report.event_totals.optout} ({$report.event_totals.optout_rate|string_format:"%0.2f"}%)</td>
-      <td>{$report.event_totals.actionlinks.optout}</td></tr>
+      {*<!--<td>{$report.event_totals.actionlinks.optout}</td>-->*}</tr>
   <tr><td class="label">{ts}Scheduled Date{/ts}</td>
-      <td colspan=2>{$report.jobs.0.scheduled_date}</td></tr>
+      <td colspan=1>{$report.jobs.0.scheduled_date}</td></tr>
   <tr><td class="label">{ts}Status{/ts}</td>
-      <td colspan=2>{$report.jobs.0.status}</td></tr>
+      <td colspan=1>{$report.jobs.0.status}</td></tr>
   <tr><td class="label">{ts}Start Date{/ts}</td>
-      <td colspan=2>{$report.jobs.0.start_date}</td></tr>
+      <td colspan=1>{$report.jobs.0.start_date}</td></tr>
   <tr><td class="label">{ts}End Date{/ts}</td>
-      <td colspan=2>{$report.jobs.0.end_date}</td></tr>
+      <td colspan=1>{$report.jobs.0.end_date}</td></tr>
   </table>
   {/strip}
 {else}
@@ -86,9 +86,9 @@
 <tr class="{cycle values="odd-row,even-row"}">
 <td>
 {if $group.mailing}
-{ts 1=$group.link 2=$group.name}Recipients of <a href="%1">%2</a>{/ts}
+{ts 1=$group.link 2=$group.name}Recipients of <a href="{$base_root}%1">%2</a>{/ts}
 {else}
-{ts 1=$group.link 2=$group.name}Members of <a href="%1">%2</a>{/ts}
+{ts 1=$group.link 2=$group.name}Members of <a href="{$base_root}%1">%2</a>{/ts}
 {/if}
 </td>
 </tr>
@@ -105,9 +105,9 @@
 <tr class="{cycle values="odd-row,even-row"}">
 <td>
 {if $group.mailing}
-{ts 1=$group.link 2=$group.name}Recipients of <a href="%1">%2</a>{/ts}
+{ts 1=$group.link 2=$group.name}Recipients of <a href="{$base_root}%1">%2</a>{/ts}
 {else}
-{ts 1=$group.link 2=$group.name}Members of <a href="%1">%2</a>{/ts}
+{ts 1=$group.link 2=$group.name}Members of <a href="{$base_root}%1">%2</a>{/ts}
 {/if}
 </td>
 </tr>
@@ -124,9 +124,9 @@
 <tr class="{cycle values="odd-row,even-row"}">
 <td>
 {if $group.mailing}
-{ts 1=$group.link 2=$group.name}Recipients of <a href="%1">%2</a>{/ts}
+{ts 1=$group.link 2=$group.name}Recipients of <a href="{$base_root}%1">%2</a>{/ts}
 {else}
-{ts 1=$group.link 2=$group.name}Members of <a href="%1">%2</a>{/ts}
+{ts 1=$group.link 2=$group.name}Members of <a href="{$base_root}%1">%2</a>{/ts}
 {/if}
 </td>
 </tr>
@@ -142,16 +142,16 @@
 {strip}
 <table class="crm-info-panel">
 <tr>
-<th><a href="{$report.event_totals.links.clicks}">{ts}Clicks{/ts}</a></th>
-<th><a href="{$report.event_totals.links.clicks_unique}">{ts}Unique Clicks{/ts}</a></th>
+<th><a href="{$base_root}{$report.event_totals.links.clicks}">{ts}Clicks{/ts}</a></th>
+<th><a href="{$base_root}{$report.event_totals.links.clicks_unique}">{ts}Unique Clicks{/ts}</a></th>
 <th>{ts}Success Rate{/ts}</th>
 <th>{ts}URL{/ts}</th></tr>
 {foreach from=$report.click_through item=row}
 <tr class="{cycle values="odd-row,even-row"}">
-<td>{if $row.clicks > 0}<a href="{$row.link}">{$row.clicks}</a>{else}{$row.clicks}{/if}</td>
-<td>{if $row.unique > 0}<a href="{$row.link_unique}">{$row.unique}</a>{else}{$row.unique}{/if}</td>
+<td>{if $row.clicks > 0}<a href="{$base_root}{$row.link}">{$row.clicks}</a>{else}{$row.clicks}{/if}</td>
+<td>{if $row.unique > 0}<a href="{$base_root}{$row.link_unique}">{$row.unique}</a>{else}{$row.unique}{/if}</td>
 <td>{$row.rate|string_format:"%0.2f"}%</td>
-<td><a href="{$row.url}">{$row.url}</a></td>
+<td><a href="{$base_root}{$row.url}">{$row.url}</a></td>
 </tr>
 {/foreach}
 </table>
@@ -159,6 +159,7 @@
 </fieldset>
 {/if}
 
+{*<!--
 <fieldset>
 <legend>{ts}Content / Components{/ts}</legend>
 {strip}
@@ -200,7 +201,7 @@
 </table>
 {/strip}
 </fieldset>
-
+-->*}
 <fieldset>
 <legend>
     {ts}Mailing Settings{/ts}
@@ -225,8 +226,8 @@
 </table>
 {/strip}
 </fieldset>
-<!--
+{*<!--
 <div class="action-link">
     <a href="{$backUrl}" >&raquo; {$backUrlTitle}</a>
 </div>
--->
+-->*}

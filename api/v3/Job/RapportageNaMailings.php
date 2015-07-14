@@ -22,19 +22,17 @@ function _civicrm_api3_job_rapportagenamailings_spec(&$spec) {
  * @throws API_Exception
  */
 function civicrm_api3_job_rapportagenamailings($params) {  
-  
+    
   // Check if the Job is run directly, if so the GET['job'] must exists and
   // the GET['job'] must be RapportageNaMailings. If i do not check it it will 
   // run always even if the job is disabled in the scheduled jobs  
-  if('RapportageNaMailings' == CRM_Utils_Request::retrieve('job', 'String')){    
+  //if('RapportageNaMailings' == CRM_Utils_Request::retrieve('job', 'String')){ // we dicide to run this job always   
     $configRapportageNaMailings = CRM_Rapportagenamailings_ConfigRapportageNaMailings::singleton();   
         
-    echo('TxtPathFull: ' . $configRapportageNaMailings->getTxtFilePathFull());
-    
     // check if file exists
     // If the file does not exists it is probably the first time, so
     // we have to create the file and set all the mailing id on done 
-    if(!$configRapportageNaMailings->getTxtFileExists()){
+    if(!$configRapportageNaMailings->getTxtFileExists()){      
       $data = array();
       foreach($configRapportageNaMailings->getMailings() as $key => $mailing){
         $data[$mailing['id']] = array('id' => $mailing['id'], 'status' => 'done');
@@ -44,7 +42,7 @@ function civicrm_api3_job_rapportagenamailings($params) {
       
       return true;
     }
-            
+    
     // Loop trough the mailings and check in the .txt file if
     // we already have done that mailing
     $data = $configRapportageNaMailings->getTxtData(); 
@@ -60,7 +58,9 @@ function civicrm_api3_job_rapportagenamailings($params) {
     }
     
     $configRapportageNaMailings->writeTxtData($data);
-  }
+  //}
+    
+  return true;
 }
 
 /**
@@ -85,6 +85,8 @@ function civicrm_api3_job_rapportagenamailings_mail($mailing_id){
   //get contents of mailing
   CRM_Mailing_BAO_Mailing::getMailingContent($report, $page);
 
+  $subject = ts('CiviMail Report: %1', array(1 => $report['mailing']['name']));
+  
   $template->assign('report', $report);
 
   // from CRM/Core/page.php
@@ -105,8 +107,8 @@ function civicrm_api3_job_rapportagenamailings_mail($mailing_id){
     'from' => 'j.vos@bosqom.nl', // complete from envelope
     'toName' => 'Jan-Derek Vos', // name of person to send email
     'toEmail' => 'j.vos@bosqom.nl', // email address to send to
-    'subject' => 'Rapportage na Mailings', // subject of the email
-    'text' => 'Rapportage na Mailings', // text of the message
+    'subject' => $subject, // subject of the email
+    'text' => $subject, // text of the message
     'html' => $content, // html version of the message
     'replyTo' => 'j.vos@bosoqm.nl', // reply-to header in the email
   );
