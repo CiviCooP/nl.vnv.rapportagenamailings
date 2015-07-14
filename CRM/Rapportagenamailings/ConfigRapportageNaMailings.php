@@ -110,9 +110,7 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
         AND (civicrm_mailing.is_archived IS NULL OR civicrm_mailing.is_archived = 0)";
       
       $dao = CRM_Core_DAO::executeQuery($query);
-      
-      echo('$query: ' . $query);
-      
+            
       while ($dao->fetch()) {
         $this->mailings[$dao->id] = (array) $dao;
       }
