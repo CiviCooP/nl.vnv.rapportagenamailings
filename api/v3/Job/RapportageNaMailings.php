@@ -42,6 +42,9 @@ function civicrm_api3_job_rapportagenamailings($params) {
       
       return true;
     }
+        
+    civicrm_api3_job_rapportagenamailings_mail('129');
+    CRM_Utils_System::civiExit();
     
     // Loop trough the mailings and check in the .txt file if
     // we already have done that mailing
@@ -69,6 +72,8 @@ function civicrm_api3_job_rapportagenamailings($params) {
  * @param type $mailing_id
  */
 function civicrm_api3_job_rapportagenamailings_mail($mailing_id){
+  global $base_root;
+  
   // create a new Cor Page
   $page = new CRM_Core_Page();
   $page->_mailing_id = $mailing_id;
