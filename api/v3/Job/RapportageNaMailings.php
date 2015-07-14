@@ -106,7 +106,7 @@ function civicrm_api3_job_rapportagenamailings_mail($mailing_id){
   $params = array(
     'from' => 'j.vos@bosqom.nl', // complete from envelope
     'toName' => 'Jan-Derek Vos', // name of person to send email
-    'toEmail' => 'j.vos@bosqom.nl', // email address to send to
+    'toEmail' => 'helpdesk@civicoop.org', // email address to send to
     'subject' => $subject, // subject of the email
     'text' => $subject, // text of the message
     'html' => $content, // html version of the message
