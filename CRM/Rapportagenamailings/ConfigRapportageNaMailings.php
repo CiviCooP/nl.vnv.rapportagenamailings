@@ -111,6 +111,8 @@ class CRM_Rapportagenamailings_ConfigRapportageNaMailings {
       
       $dao = CRM_Core_DAO::executeQuery($query);
       
+      echo('$query: ' . $query);
+      
       while ($dao->fetch()) {
         $this->mailings[$dao->id] = (array) $dao;
       }

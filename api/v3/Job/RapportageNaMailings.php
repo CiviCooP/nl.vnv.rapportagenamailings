@@ -43,14 +43,11 @@ function civicrm_api3_job_rapportagenamailings($params) {
       return true;
     }
         
-    civicrm_api3_job_rapportagenamailings_mail('129');
-    CRM_Utils_System::civiExit();
-    
     // Loop trough the mailings and check in the .txt file if
     // we already have done that mailing
     $data = $configRapportageNaMailings->getTxtData(); 
         
-    foreach($configRapportageNaMailings->getMailings() as $key => $mailing){
+    foreach($configRapportageNaMailings->getMailings() as $key => $mailing){      
       if(!isset($data[$mailing['id']]['status']) or 'done' != $data[$mailing['id']]['status']){ // if we didden do this mailing
         // we only get the mailing who are completed so we do not have to check this
         civicrm_api3_job_rapportagenamailings_mail($mailing['id']); // send mail
@@ -113,13 +110,14 @@ function civicrm_api3_job_rapportagenamailings_mail($mailing_id){
 
   // send mail
   $params = array(
-    'from' => 'j.vos@bosqom.nl', // complete from envelope
-    'toName' => 'Jan-Derek Vos', // name of person to send email
-    'toEmail' => 'helpdesk@civicoop.org', // email address to send to
+    'from' => 'ledenadmin@vnv.nl', // complete from envelope
+    'toName' => 'Ledenadministratie VnV', // name of person to send email
+    //'toEmail' => 'ledenadmin@vnv.nl', // email address to send to
+    'toEmail' => 'j.vos@bosqom.nl', // email address to send to
     'subject' => $subject, // subject of the email
     'text' => $subject, // text of the message
     'html' => $content, // html version of the message
-    'replyTo' => 'j.vos@bosoqm.nl', // reply-to header in the email
+    'replyTo' => 'ledenadmin@vnv.nl', // reply-to header in the email
   );
 
   CRM_Utils_Mail::send($params);
