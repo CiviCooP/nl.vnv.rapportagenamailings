@@ -77,7 +77,6 @@
 {/if}
 </fieldset>
 
-</br>
 <fieldset>
 <legend><h3>{ts}Recipients{/ts}</h3></legend>
 {if $report.group.include|@count}
@@ -139,7 +138,6 @@
 </fieldset>
 
 {if $report.mailing.url_tracking && $report.click_through|@count > 0}
-</br>
 <fieldset>
 <legend><h3>{ts}Click-through Summary{/ts}</h3></legend>
 {strip}
@@ -205,7 +203,7 @@
 {/strip}
 </fieldset>
 -->*}
-</br>
+
 <fieldset>
 <legend>
     <h3>{ts}Mailing Settings{/ts}</h3>
