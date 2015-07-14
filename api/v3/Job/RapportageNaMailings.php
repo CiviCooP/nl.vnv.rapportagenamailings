@@ -87,7 +87,7 @@ function civicrm_api3_job_rapportagenamailings_mail($mailing_id){
   //get contents of mailing
   CRM_Mailing_BAO_Mailing::getMailingContent($report, $page);
 
-  $subject = ts('CiviMail Report: %1', array(1 => $report['mailing']['name']));
+  $subject = ts('Mailing Gereed: %1', array(1 => $report['mailing']['name']));
   
   $template->assign('report', $report);
     
@@ -112,8 +112,8 @@ function civicrm_api3_job_rapportagenamailings_mail($mailing_id){
   $params = array(
     'from' => 'ledenadmin@vnv.nl', // complete from envelope
     'toName' => 'Ledenadministratie VnV', // name of person to send email
-    //'toEmail' => 'ledenadmin@vnv.nl', // email address to send to
-    'toEmail' => 'j.vos@bosqom.nl', // email address to send to
+    'toEmail' => 'ledenadmin@vnv.nl', // email address to send to
+    //'toEmail' => 'j.vos@bosqom.nl', // email address to send to
     'subject' => $subject, // subject of the email
     'text' => $subject, // text of the message
     'html' => $content, // html version of the message
