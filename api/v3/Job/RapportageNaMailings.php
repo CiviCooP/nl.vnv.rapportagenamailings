@@ -88,7 +88,10 @@ function civicrm_api3_job_rapportagenamailings_mail($mailing_id){
   $subject = ts('CiviMail Report: %1', array(1 => $report['mailing']['name']));
   
   $template->assign('report', $report);
-
+    
+  // inlcude $base_root
+  $template->assign('base_root', $base_root);
+  
   // from CRM/Core/page.php
   // only print
   $template->assign('tplFile', 'CRM/Rapportagenamailings/Page/RapportMailing.tpl');
