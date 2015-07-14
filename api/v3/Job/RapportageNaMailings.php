@@ -96,6 +96,7 @@ function civicrm_api3_job_rapportagenamailings_mail($mailing_id){
     
   // inlcude $base_root
   $template->assign('base_root', $base_root);
+  $template->assign('subject', $subject);
   
   // from CRM/Core/page.php
   // only print
