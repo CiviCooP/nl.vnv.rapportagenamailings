@@ -110,14 +110,14 @@ function civicrm_api3_job_rapportagenamailings_mail($mailing_id){
 
   // send mail
   $params = array(
-    'from' => 'ledenadmin@vnv.nl', // complete from envelope
-    'toName' => 'Ledenadministratie VnV', // name of person to send email
-    'toEmail' => 'ledenadmin@vnv.nl', // email address to send to
+    'from' => 'frontoffice@vnv.nl', // complete from envelope
+    'toName' => 'Front Office VnV', // name of person to send email
+    'toEmail' => 'frontoffice@vnv.nl', // email address to send to
     //'toEmail' => 'j.vos@bosqom.nl', // email address to send to
     'subject' => $subject, // subject of the email
     'text' => $subject, // text of the message
     'html' => $content, // html version of the message
-    'replyTo' => 'ledenadmin@vnv.nl', // reply-to header in the email
+    'replyTo' => 'frontoffice@vnv.nl', // reply-to header in the email
   );
 
   CRM_Utils_Mail::send($params);
